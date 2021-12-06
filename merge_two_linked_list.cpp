@@ -74,6 +74,35 @@ Node* merge(Node *head1, Node *head2)
 
 }
 
+Node* reverseRecursively(Node *head)
+{
+	if(head == nullptr || head->next == nullptr)
+		return head;
+	Node *newhead = reverseRecursively(head->next);
+	head->next->next = head;
+	head->next = nullptr;
+	return newhead;
+}
+
+Node* reverse(Node *head)
+{
+	if(head == nullptr)
+		return head;
+	Node *current, *next, *prev;
+	current = head;
+	next = prev = nullptr;
+	while(current != nullptr)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	head = prev;
+	return head;	
+	
+}
+
 int main()
 {
 	int arr1[] = {1, 3, 5, 7, 9};
